@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @comment_anime.user
+%p
+  %b Anime:
+  = @comment_anime.anime
+%p
+  %b Msg:
+  = @comment_anime.msg
+
+= link_to 'Edit', edit_comment_anime_path(@comment_anime)
+\|
+= link_to 'Back', comment_animes_path

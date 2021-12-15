@@ -1,0 +1,25 @@
+%h1 Listing comment_news
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Anime news
+      %th Msg
+      %th
+      %th
+      %th
+
+  %tbody
+    - @comment_news.each do |comment_news|
+      %tr
+        %td= comment_news.user
+        %td= comment_news.anime_news
+        %td= comment_news.msg
+        %td= link_to 'Show', comment_news
+        %td= link_to 'Edit', edit_comment_news_path(comment_news)
+        %td= link_to 'Destroy', comment_news, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Comment news', new_comment_news_path

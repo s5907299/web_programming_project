@@ -1,0 +1,27 @@
+%h3
+  %div{:class=>'row'}
+    %div{:class=>'col-sm-12'}
+      %div{:class=>''} My List
+      - @animes.each.with_index() do |anime,index|
+        .card{:class => "col-sm-10 mb-3 mt-3"}
+          .card-body
+            %div{:class=>'row'}
+              %div{:class=>'col-sm-3'}
+                = link_to anime.name, 'animes/'+(anime.id.to_s)
+              %div{:class=>'col-sm-4'}
+                %div{:class=>''} #{anime.synosis}
+              %div{:class=>'col-sm-1'}
+                -if LikeAnime.find_by(user_id:@user.id,anime_id:anime.id)
+                  = link_to 'unlike', "/like_anime/"+anime.id.to_s,class:"fs-5"
+                -else
+                  = link_to 'like', "/like_anime/"+anime.id.to_s,class:"fs-5"
+              %div{:class=>'col-sm-2'}
+                -if Follow.find_by(user_id:@user.id,anime_id:anime.id)
+                  = link_to 'unfollow', "/follow_anime/"+anime.id.to_s,class:"fs-5"
+                -else
+                  = link_to 'follow', "/follow_anime/"+anime.id.to_s,class:"fs-5"
+              %div{:class=>'col-sm-2'}
+                -if MyList.find_by(user_id:@user.id,anime_id:anime.id)
+                  = link_to 'remove from list', "/add_to_list/"+anime.id.to_s,class:"fs-5"
+                -else
+                  = link_to 'add to list', "/add_to_list/"+anime.id.to_s,class:"fs-5"

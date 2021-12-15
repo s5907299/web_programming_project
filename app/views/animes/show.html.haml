@@ -1,0 +1,58 @@
+%h3
+  %div{:class=>'row'}
+    %div{:class=>'col-sm-8'}
+      %div{:class=>''} Anime
+      .card{:class => "col-sm-10 mb-3 mt-3"}
+        .card-body
+          = link_to @anime.name, '/animes/'+@anime.id.to_s,class:"fs-5"
+          %div{:class=>'fw-normal fs-6'} Synosis: #{@anime.synosis}
+          -if @anime.on_air
+            %div{:class=>'fw-normal fs-6'} On-air now
+          -else
+            %div{:class=>'fw-normal fs-6'} Not on-air
+          %div{:class=>'fw-normal fs-6'} day: #{@anime.get_day}
+          %div{:class=>'fw-normal fs-6'} time: #{@anime.show_time.to_s[10,15]}
+          %div{:class=>'fw-normal fs-6'} episode: #{@anime.episode}
+          %div{:class=>'fw-normal fs-6'} #{@anime.get_like}
+          %div{:class=>'row'}
+            %div{:class=>'col-sm-2'}
+              -if LikeAnime.find_by(user_id:@user.id,anime_id:@anime.id)
+                = link_to 'unlike', "/like_anime/"+@anime.id.to_s,class:"fs-5"
+              -else
+                = link_to 'like', "/like_anime/"+@anime.id.to_s,class:"fs-5"
+            %div{:class=>'col-sm-2'}
+              -if Follow.find_by(user_id:@user.id,anime_id:@anime.id)
+                = link_to 'unfollow', "/follow_anime/"+@anime.id.to_s,class:"fs-5"
+              -else
+                = link_to 'follow', "/follow_anime/"+@anime.id.to_s,class:"fs-5"
+            %div{:class=>'col-sm-4'}
+              -if MyList.find_by(user_id:@user.id,anime_id:@anime.id)
+                = link_to 'remove from list', "/add_to_list/"+@anime.id.to_s,class:"fs-5"
+              -else
+                = link_to 'add to list', "/add_to_list/"+@anime.id.to_s,class:"fs-5"
+            %div{:class=>'col-sm-4'}
+              = link_to 'Publish', '/publish/'+@anime.id.to_s,class:"fs-5"
+          = link_to 'Comment', "/comment_anime/"+@anime.id.to_s
+          = link_to 'Destroy', @anime, method: :delete, data: { confirm: 'Are you sure?' }
+
+      = link_to 'Edit', edit_anime_path(@anime)
+      \|
+      = link_to 'Back', '/home'
+      <br></br>
+      %div{:class=>''} Comment
+      - @comments.each.with_index() do |comment,index|
+        .card{:class => "col-sm-10 mb-3 mt-3"}
+          .card-body
+            %div{:class=>'fw-normal fs-6'} user id: #{comment.user_id}
+            %div{:class=>'fw-normal fs-6'} msg: #{comment.msg}
+            = link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' },:class=>'fw-normal fs-6'
+    %div{:class=>'col-sm-4'}
+      %div{:class=>''} Platform
+      - @platforms.each.with_index() do |platform,index|
+        .card{:class => "col-sm-10 mb-3 mt-3"}
+          .card-body
+            = link_to platform.name, '/platform1s/'+(platform.id.to_s),class:"fs-5"
+            %div{:class=>'fw-normal fs-6'} url: #{platform.link}
+          
+
+

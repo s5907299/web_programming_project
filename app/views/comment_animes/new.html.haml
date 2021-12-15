@@ -1,0 +1,15 @@
+%h1 New comment_anime
+
+= simple_form_for(@comment_anime) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.hidden_field :user_id, value: session[:user_id]
+    = f.hidden_field :anime_id, value: session[:anime_id]
+    = f.input :msg
+
+  .form-actions
+    = f.button :submit
+
+= link_to 'Back', comment_animes_path

@@ -1,0 +1,23 @@
+%h1 Listing anime_news
+
+%table
+  %thead
+    %tr
+      %th Headline
+      %th Context
+      %th
+      %th
+      %th
+
+  %tbody
+    - @anime_news.each do |anime_news|
+      %tr
+        %td= anime_news.headline
+        %td= anime_news.context
+        %td= link_to 'Show', anime_news
+        %td= link_to 'Edit', edit_anime_news_path(anime_news)
+        %td= link_to 'Destroy', anime_news, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Anime news', new_anime_news_path

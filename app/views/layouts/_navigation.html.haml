@@ -1,0 +1,29 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    %a.navbar-brand{} Anime
+    -if(session[:user_id])
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      -if(session[:user_id])
+        %a.nav-link.active{:href => "/home",class:"btn btn-info"} Home
+        %a.nav-link.active{:href => "/feed",class:"btn btn-info"} Feed
+        %a.nav-link.active{:href => "/my_list",class:"btn btn-info"} My List
+        %a.nav-link.active{:href => "/platform",class:"btn btn-info"} Platform
+
+      -if(alert)
+        %div{:class=>'btn btn-warning'}
+          =alert 
+      -if(notice)
+        %div{:class=>'btn btn-success'}
+          =notice 
+      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+      -if(session[:user_id])
+      
+        %a.nav-link.active{"aria-current" => "page", :href => "/animes/new"} Create Anime
+        %a.nav-link.active{"aria-current" => "page", :href => "/anime_news/new"} Create News
+        %a.nav-link.active{"aria-current" => "page", :href => "/platform1s/new"} Create Platform
+        %a.nav-link.active{"aria-current" => "page", :href => "/logout"} Logout
+      -else
+        %a.nav-link.active{"aria-current" => "page", :href => "/login"} Go to Login
+        %a.nav-link.active{"aria-current" => "page", :href => "/register"} Go to Register

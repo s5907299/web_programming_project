@@ -1,0 +1,27 @@
+%h1 Select Platform to publish
+.card{:class => "col-sm-10 mb-3 mt-3"}
+  .card-body
+    %div{:class=>'fw-normal fs-6'} Anime: #{@anime.name}
+    %div{:class=>'fw-normal fs-6'} Synosis: #{@anime.synosis}
+    -if @anime.on_air
+      %div{:class=>'fw-normal fs-6'} On-air now
+    -else
+      %div{:class=>'fw-normal fs-6'} Not on-air
+    %div{:class=>'fw-normal fs-6'} day: #{@anime.get_day}
+    %div{:class=>'fw-normal fs-6'} time: #{@anime.show_time.to_s[10,15]}
+    %div{:class=>'fw-normal fs-6'} episode: #{@anime.episode}
+    %div{:class=>'fw-normal fs-6'} #{@anime.get_like}
+= simple_form_for(@source0) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.hidden_field :anime_id, value: @anime.id
+    = f.association :platform1
+    = f.input :desc
+
+  .form-actions
+    = f.button :submit , "Publish"
+
+
+= link_to 'Back', '/animes/'+@anime.id.to_s

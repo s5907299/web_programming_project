@@ -1,0 +1,26 @@
+%h3
+  %div{:class=>'row'}
+    %div{:class=>'col-sm-12'}
+      %div{:class=>''} News
+      .card{:class => "col-sm-10 mb-3 mt-3"}
+        .card-body
+          = link_to @anime_news.headline, 'anime_news/'+(@anime_news.id.to_s),class:"fs-5"
+          %div{:class=>'fw-normal fs-6'} #{@anime_news.context}
+          %div{:class=>'fw-normal fs-6'} #{@anime_news.get_like}
+          %div{:class=>'row'}
+            -if LikeNews.find_by(user_id:@user.id,anime_news_id:@anime_news.id)
+              = link_to 'unlike', "/likenews/"+@anime_news.id.to_s,class:"fs-5"
+            -else
+              = link_to 'like', "/likenews/"+@anime_news.id.to_s,class:"fs-5"
+          = link_to 'Destroy', @anime_news, method: :delete, data: { confirm: 'Are you sure?' }
+
+      = link_to 'Edit', edit_anime_news_path(@anime_news)
+      \|
+      = link_to 'Back', "/home"
+      %div{:class=>''} Comment
+      - @comments.each.with_index() do |comment,index|
+        .card{:class => "col-sm-10 mb-3 mt-3"}
+          .card-body
+            %div{:class=>'fw-normal fs-6'} user id: #{comment.user_id}
+            %div{:class=>'fw-normal fs-6'} msg: #{comment.msg}
+            = link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' },:class=>'fw-normal fs-6'

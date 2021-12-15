@@ -1,0 +1,23 @@
+%h1 Listing like_animes
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Anime
+      %th
+      %th
+      %th
+
+  %tbody
+    - @like_animes.each do |like_anime|
+      %tr
+        %td= like_anime.user
+        %td= like_anime.anime
+        %td= link_to 'Show', like_anime
+        %td= link_to 'Edit', edit_like_anime_path(like_anime)
+        %td= link_to 'Destroy', like_anime, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Like anime', new_like_anime_path

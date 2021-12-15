@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @like_anime.user
+%p
+  %b Anime:
+  = @like_anime.anime
+
+= link_to 'Edit', edit_like_anime_path(@like_anime)
+\|
+= link_to 'Back', like_animes_path

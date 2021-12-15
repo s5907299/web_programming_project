@@ -1,0 +1,23 @@
+%h1 Listing my_lists
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Anime
+      %th
+      %th
+      %th
+
+  %tbody
+    - @my_lists.each do |my_list|
+      %tr
+        %td= my_list.user
+        %td= my_list.anime
+        %td= link_to 'Show', my_list
+        %td= link_to 'Edit', edit_my_list_path(my_list)
+        %td= link_to 'Destroy', my_list, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New My list', new_my_list_path

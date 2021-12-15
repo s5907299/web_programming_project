@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @my_list.user
+%p
+  %b Anime:
+  = @my_list.anime
+
+= link_to 'Edit', edit_my_list_path(@my_list)
+\|
+= link_to 'Back', my_lists_path

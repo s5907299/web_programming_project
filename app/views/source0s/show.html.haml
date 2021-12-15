@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Anime:
+  = @source0.anime
+%p
+  %b Platform1:
+  = @source0.platform1
+%p
+  %b Desc:
+  = @source0.desc
+
+= link_to 'Edit', edit_source0_path(@source0)
+\|
+= link_to 'Back', source0s_path

@@ -1,0 +1,31 @@
+%h1 Listing animes
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Synosis
+      %th Day in week
+      %th Show time
+      %th On air
+      %th Episode
+      %th
+      %th
+      %th
+
+  %tbody
+    - @animes.each do |anime|
+      %tr
+        %td= anime.name
+        %td= anime.synosis
+        %td= anime.day_in_week
+        %td= anime.show_time
+        %td= anime.on_air
+        %td= anime.episode
+        %td= link_to 'Show', anime
+        %td= link_to 'Edit', edit_anime_path(anime)
+        %td= link_to 'Destroy', anime, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Anime', new_anime_path

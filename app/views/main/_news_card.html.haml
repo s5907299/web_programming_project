@@ -1,0 +1,5 @@
+.card{:class => "col-sm-10 mb-3 mt-3"}
+  .card-body
+    = link_to new.headline, 'anime_news/'+(new.id.to_s),class:"fs-5"
+    %div{:class=>'fw-normal fs-6'} #{new.context}
+    = link_to 'like', 'home',class:"fs-5"

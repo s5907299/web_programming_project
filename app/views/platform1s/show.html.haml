@@ -1,0 +1,27 @@
+%h3
+  %div{:class=>'row'}
+    %div{:class=>'col-sm-12'}
+      %div{:class=>''} Platform
+      .card{:class => "col-sm-10 mb-3 mt-3"}
+        .card-body
+          = link_to @platform1.name, '/platform1s/'+(@platform1.id.to_s),class:"fs-5"
+          %div{:class=>'fw-normal fs-6'} url: #{@platform1.link}
+          = link_to 'Destroy', @platform1, method: :delete, data: { confirm: 'Are you sure?' }
+      %div{:class=>''} Animes in this platform
+      - @anime_list.each.with_index() do |anime,index|
+        .card{:class => "col-sm-10 mb-3 mt-3"}
+          .card-body
+            = link_to anime.name, '/animes/'+anime.id.to_s,class:"fs-5"
+            %div{:class=>'fw-normal fs-6'} Synosis: #{anime.synosis}
+            -if anime.on_air
+              %div{:class=>'fw-normal fs-6'} On-air now
+            -else
+              %div{:class=>'fw-normal fs-6'} Not on-air
+            %div{:class=>'fw-normal fs-6'} day: #{anime.get_day}
+            %div{:class=>'fw-normal fs-6'} time: #{anime.show_time.to_s[10,15]}
+            %div{:class=>'fw-normal fs-6'} episode: #{anime.episode}
+            %div{:class=>'fw-normal fs-6'} #{anime.get_like}
+
+= link_to 'Edit', edit_platform1_path(@platform1)
+\|
+= link_to 'Back', "/platform"

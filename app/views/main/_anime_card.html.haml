@@ -1,0 +1,15 @@
+.card{:class => "col-sm-10 mb-3 mt-3"}
+  .card-body
+    = link_to anime.name, 'animes/'+(anime.id.to_s),class:"fs-5"
+    %div{:class=>'fw-normal fs-6'} #{anime.synosis}
+    %div{:class=>'fw-normal fs-6'} day: 
+    %div{:class=>'fw-normal fs-6'} time: #{anime.show_time.to_s[10,15]}
+    %div{:class=>'fw-normal fs-6'} episode: #{anime.episode}
+
+    -if(true)
+      = link_to 'like', "/like_anime/"+anime.id.to_s
+    -else
+      = link_to 'unlike', "/unlike_anime/"+anime.id.to_s
+
+    = link_to 'follow', 'home',class:"fs-5"
+    = link_to 'add to list', 'home',class:"fs-5"

@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first_anime:
+  name: first_anime
+  synosis: describe
+  day_in_week: 1
+  show_time: 2021-12-06 10:11:12
+  on_air: true
+  episode: 1
